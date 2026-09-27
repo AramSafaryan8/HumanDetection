@@ -1,0 +1,47 @@
+{
+    "detectors": [
+        {
+            "id": "face_detector",
+            "type": "FaceDetector",
+            "enabled": true,
+            "params": {
+                "model_path": "assets/face_landmarker.task"
+            }
+        },
+        {
+            "id": "finger_snap_detector",
+            "type": "FingerSnapDetector",
+            "enabled": true,
+            "params": {
+                "model_path": "assets/hand_landmarker.task",
+                "contact_threshold": 0.25,
+                "release_threshold": 0.55,
+                "snap_velocity_threshold": 1.0,
+                "min_snap_travel": 0.08,
+                "max_snap_duration_seconds": 0.35,
+                "cooldown_seconds": 1.0
+            }
+        }
+    ],
+    "actions": [
+        {
+            "event_type": "FingerSnap",
+            "handlers": [
+                {
+                    "type": "UIBannerActionHandler",
+                    "params": {
+                        "duration_ms": 2500
+                    }
+                }
+            ]
+        },
+        {
+            "event_type": "FaceDetected",
+            "handlers": []
+        },
+        {
+            "event_type": "FaceLost",
+            "handlers": []
+        }
+    ]
+}
